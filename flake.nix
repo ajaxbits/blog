@@ -36,7 +36,7 @@
 
           meta = with lib; {
             description = "My website";
-            homepage = "https://ajaxbits.com/blog";
+            homepage = "https://blog.ajaxbits.com";
             changelog = "https://github.com/ajaxbits/blog/commits/main";
             licence = licences.agpl3Only;
             maintainers = [

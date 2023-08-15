@@ -1,12 +1,8 @@
 name: Deploy Blog
 
 on:
-  push:
-    branches: [main]
-    paths-ignore: 
-      - ".github/**"
-      - "README.md"
-      - ".gitignore"
+  release: 
+    types: ["published"]
   workflow_dispatch:
 
 jobs:
@@ -26,7 +22,7 @@ jobs:
     - name: Build
       run: |
         set -euxo pipefail
-        nix build .#staging
+        nix build
         mkdir -p .build
         cp -r result/* .build/.
         
@@ -36,7 +32,6 @@ jobs:
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_DEPLOY_TO_PROD: true
-        deploy_alias: "staging"
         NETLIFY_DEPLOY_MESSAGE: "Deployed from GitHub Actions"
         build_directory: .build
         install_command: "echo Skipping dependency install"
