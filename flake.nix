@@ -22,8 +22,7 @@
         ...
       }: let
         lib = pkgs.lib;
-        stagingUrl = "";
-
+        stagingUrl = "http://127.0.0.1:8080";
       in {
         packages.blog = pkgs.stdenv.mkDerivation {
           pname = "ajaxbits";
@@ -62,17 +61,29 @@
             ];
           };
         };
-        
+
         packages.default = config.packages.blog;
 
         packages.staging = config.packages.blog.overrideAttrs (old: {
           version = "staging";
           buildPhase = ''
-            zola build --drafts --root-url=${stagingUrl}
+            set -euo pipefail
+            export HOME=$(pwd)
+            zola build --drafts --base-url=${stagingUrl}
             npm run abridge
-            zola build --drafts --root-url=${stagingUrl}
+            zola build --drafts --base-url=${stagingUrl}
           '';
         });
+
+        apps.staging = {
+          type = "app";
+          program = pkgs.writeShellScriptBin "server" ''
+            ${pkgs.python3Minimal}/bin/python3 -m http.server 8080 \
+              --directory ${config.packages.staging}
+          '';
+        };
+        
+        apps.default = config.apps.staging;
 
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
