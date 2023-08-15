@@ -1,6 +1,4 @@
-# do NOT include a trailing slash on the base URL for web urls
 base_url = "https://blog.ajaxbits.com"
-#base_url = "/home/jieiku/.dev/abridge/public/" # for locally usable build directly from disk, also set in [extra] section uglyurls = true
 title = "Ajax's Blog"
 description = "Ajax's personal/technical blog"
 default_language = "en"
@@ -12,7 +10,6 @@ feed_filename = "atom.xml"
 #ignored_content = ["*.{graphml,xlsx}", "temp.*"]
 #hard_link_static = false # set to true to hard link instead of copying, useful for very large files.
 taxonomies = [
-    {name = "categories", feed = true},
     {name = "tags", feed = true},
 ]
 
@@ -49,20 +46,19 @@ author = "Alex Jackson" # Put Your Name here
 
 title_size_index = "s85" # size: s95, s90, s85, s80, s75, s70, false(full size)
 meta_index = { position="bottom", size="s90", author=false, readtime=false, readstring="min", date=true, categories_tags=true, divider=" " }
-meta_post = { position="top", size="s95", author=true, readtime=false, readstring="min read", date=true, categories_tags=true, divider=" " }
+meta_post = { position="top", size="s95", author=true, readtime=true, readstring="min read", date=true, categories_tags=true, divider=" " }
 ## position: top, bottom, both, false(hidden) ## size: s95, s90, s85, s80, s75, s70, false(full size)
 ## divider:    "&middot;"    "&bull;"    " "
 
 footer_size = "s90" # size: s95, s90, s85, s80, s75, s70, false(full size)
 footer_credit = false
-#footer_credit_override = '<p class="s90">Powered by <a href="https://www.getzola.org/" target="_blank">Zola</a> &#38; <a href="https://github.com/Jieiku/abridge/" target="_blank">Abridge</a></p>'
 
 #uncomment one of the two lines, or neither, depending on which type of logo you want to use:
 #logo = { file="logo.svg", width="32", height="32", alt="Abridge", text="bridge" }
 textlogo = "ajax's blog"
 # textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="32" height="32"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
 
-sitedesc = false # enables or disables the display of the site description below the logo.
+sitedesc = true # enables or disables the display of the site description below the logo.
 #copyright_start_year = 2019  # optional
 #copyright_end_year = 2020  # optional, recommend leaving unset, zola build will set this to current year by default
 headhr = false # show or hide horizontal rule below header
@@ -71,7 +67,6 @@ foothr = false # show or hide horizontal rule above footer
 menu = [
     {url = "/about/", name = "About", slash = true, blank = false},
     {url = "/posts/", name = "Posts", slash = true, blank = false},
-    {url = "/categories/", name = "Categories", slash = true, blank = false},
     {url = "/tags/", name = "Tags", slash = true, blank = false},
 ]
 menu_footer = [
@@ -108,9 +103,9 @@ js_theme = "theme.min.js" # Separate Always, comment out if using -auto/-light/-
 js_themeButton = "theme_button.js"# Bundleable
 
 ########## Switcher ########## (comment this block out if NOT using switcher):
-# stylesheets = [ "abridge-switcher.css" ] # Orange Automatic Dark/Light Theme based on browser/system preference with switcher
+stylesheets = [ "abridge-switcher.css" ] # Orange Automatic Dark/Light Theme based on browser/system preference with switcher
 # stylesheets = [ "abridge-blue-switcher.css" ] # Blue Automatic Night/Light Theme based on browser/system preference with switcher
-stylesheets = [ "abridge-blueshade-switcher.css" ] # BlueShade Automatic Night/Light Theme based on browser/system preference with switcher
+# stylesheets = [ "abridge-blueshade-switcher.css" ] # BlueShade Automatic Night/Light Theme based on browser/system preference with switcher
 #stylesheets = [ "abridge-switcher.css", "font.css" ] # include your own font!
 #stylesheets = [ "abridge-switcher.css", "iconfont.css" ] # include your own font icons!
 #stylesheets = [ "abridge-switcher.css", "font.css", "iconfont.css" ] # include your own font, and font icons!
@@ -148,7 +143,7 @@ icon_last = "svgs svgh angrr" # Pagination Last Page.
 icon_top = "svgs svgh angu" # Back to Top Button.
 
 # Uncomment below line to load fontawesome, eg: <i class="fa-solid fa-heart"></i>
-#fontawesome = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"
+fontawesome = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"
 
 # Icons, by default fontawesome classes, but you can specify any icon you want here.
 #icon_read = "svgs fa-solid fa-glasses" # displayed in metadata on index and below title on page.

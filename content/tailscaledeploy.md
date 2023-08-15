@@ -1,14 +1,13 @@
 +++
-title = "Gitops"
-date = 2023-05-17
-draft = false
+title = "GitOps Homelab Deploys with NixOS and Tailscale"
+date = 2023-08-15
+draft = true
 
-[taxonomies]
-categories = ["Features"]
-tags = ["config"]
+tags = ["nixos","homelab","practices"]
+[extra]
+keywords = "Math, Matematics, Notation, KaTeX, Mathematical Notation"
 +++
 
-# GitOps Homelab Deploys with NixOS and Tailscale
 > Or: Bringing the buzzword salad home to roost
 
 Look, architectures are hard. Sometimes a girlie just wants to bump the [Audiobookshelf](https://audiobookshelf.org) image on his homelab without having to open an x86 box ok?
@@ -18,6 +17,7 @@ I’m starting to run a lot more services off of my homelab these days. I’m se
 This means that with something like:
 
 ```nix
+# flake.nix
 {
   inputs.deploy-rs.url = “github:serokell/deploy-rs”;
 

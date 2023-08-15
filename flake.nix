@@ -22,14 +22,24 @@
         ...
       }: let
         lib = pkgs.lib;
-        stagingUrl = "https://staging--ajaxbits-blog.netlify.app";
+        stagingUrl = "";
 
-        blog = pkgs.stdenv.mkDerivation {
+      in {
+        packages.blog = pkgs.stdenv.mkDerivation {
           pname = "ajaxbits";
           version = "0.0.0";
           src = ./.;
-          nativeBuildInputs = [pkgs.zola];
+          nativeBuildInputs = [
+            pkgs.zola
+            pkgs.nodePackages.npm
+            pkgs.nodePackages.uglify-js
+            pkgs.openssl
+          ];
           buildPhase = ''
+            set -euo pipefail
+            export HOME=$(pwd)
+            zola build
+            npm run abridge
             zola build
           '';
           installPhase = "cp -r public $out";
@@ -52,19 +62,23 @@
             ];
           };
         };
-      in {
-        packages.default = blog;
-        packages.staging = config.packages.default.overrideAttrs (old: {
+        
+        packages.default = config.packages.blog;
+
+        packages.staging = config.packages.blog.overrideAttrs (old: {
           version = "staging";
           buildPhase = ''
-            zola build --base-url="${stagingUrl}"
+            zola build --drafts --root-url=${stagingUrl}
+            npm run abridge
+            zola build --drafts --root-url=${stagingUrl}
           '';
         });
+
         devShells.default = pkgs.mkShell {
           packages = with pkgs; [
             zola
             alejandra.defaultPackage.${system}
-            nodejs
+            nodePackages.npm
             nodePackages.uglify-js
           ];
         };
