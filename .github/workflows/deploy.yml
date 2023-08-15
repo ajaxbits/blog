@@ -38,3 +38,4 @@ jobs:
         NETLIFY_DEPLOY_TO_PROD: false
         build_directory: .build
         install_command: null
+        build_command: null
