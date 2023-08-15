@@ -22,7 +22,7 @@
         ...
       }: let
         lib = pkgs.lib;
-        stagingUrl = "https://ajaxbits-blog.netlify.app";
+        stagingUrl = "https://staging--ajaxbits-blog.netlify.app";
 
         blog = pkgs.stdenv.mkDerivation {
           pname = "ajaxbits";
