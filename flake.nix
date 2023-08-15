@@ -22,6 +22,8 @@
         ...
       }: let
         lib = pkgs.lib;
+        stagingUrl = "https://ajaxbits-blog.netlify.app";
+
         blog = pkgs.stdenv.mkDerivation {
           pname = "ajaxbits";
           version = "0.0.0";
@@ -50,13 +52,12 @@
             ];
           };
         };
-
       in {
         packages.default = blog;
         packages.staging = config.packages.default.overrideAttrs (old: {
           version = "staging";
           buildPhase = ''
-            zola build --base-url="https://staging--ajaxbits-blog.netlify.app"
+            zola build --base-url="${stagingUrl}"
           '';
         });
         devShells.default = pkgs.mkShell {
