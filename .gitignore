@@ -1,0 +1,8 @@
+### zola ###
+public
+storage
+
+### direnv ###
+.direnv
+.envrc
+result
