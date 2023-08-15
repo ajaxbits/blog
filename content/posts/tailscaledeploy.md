@@ -1,11 +1,11 @@
 +++
-title = “gitops”
+title = "Gitops"
 date = 2023-05-17
 draft = false
 
 [taxonomies]
-categories = [“Features”]
-tags = [“config”]
+categories = ["Features"]
+tags = ["config"]
 +++
 
 # GitOps Homelab Deploys with NixOS and Tailscale
