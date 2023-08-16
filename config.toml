@@ -152,7 +152,7 @@ fontawesome = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/
 #icon_author = "svgs fa-solid fa-pen-fancy" # displayed in metadata on index and below title on page.
 
 # For externally loaded Fonts, make sure to include the FULL url including the http/https prefix
-#fonts = [ {url = "https://fonts.googleapis.com/css?family=Montserrat:400,700,italic|Fira+Code:400,italic"} ]
+fonts = [ {url = "https://cdn.jsdelivr.net/npm/victormono@latest/dist/index.min.css"} ]
 
 # Local fonts are defined in the css, defining them here only adds the preload tag to the head.
 # preload will eliminate Content Layout Shift, but will hurt with page load time. (not recommended)
