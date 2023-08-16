@@ -39,7 +39,7 @@ language_code = "en-US"
 title_separator = "|"  # Separator between title and title_addition, set as |, -, _, etc
 # To disable title_addition but keep built in page additions eg, Posts page: "Posts | Abridge" set title_addition to an empty string
 # To always set the page title exactly eg "Abridge" then comment out the below line (not recommend, bad for SEO)
-title_addition = "Blog" # a default value for title addition
+title_addition = "Home" # a default value for title addition
 recent = true # TOC / index
 recent_items = 9
 author = "Alex Jackson" # Put Your Name here
@@ -58,7 +58,7 @@ footer_credit = false
 textlogo = "ajax's blog"
 # textlogo = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#f90" viewBox="0 0 96 96" width="32" height="32"><path stroke-width="14" d="M14 99 46 7h4l32 92"/><path stroke-width="9" d="M-3 82c43-26 59-26 102 0"/><path stroke-linecap="round" stroke-width="1.5" d="M94 72v7m-5-9.8v7m-5-9.8v7.1M79 64v7M63 57.7v7m-5-8.2v7m-5-7.8v7m-5-7.2v7m-5-6.7v7m-5-6.3v7m-5-5.8v7M17 64v7m-5-4.6v7m-5-4.2v7M2 72v7"/></svg>bridge'
 
-sitedesc = true # enables or disables the display of the site description below the logo.
+sitedesc = false # enables or disables the display of the site description below the logo.
 #copyright_start_year = 2019  # optional
 #copyright_end_year = 2020  # optional, recommend leaving unset, zola build will set this to current year by default
 headhr = false # show or hide horizontal rule below header
@@ -146,10 +146,10 @@ icon_top = "svgs svgh angu" # Back to Top Button.
 fontawesome = "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"
 
 # Icons, by default fontawesome classes, but you can specify any icon you want here.
-#icon_read = "svgs fa-solid fa-glasses" # displayed in metadata on index and below title on page.
-#icon_date = "svgs fa-solid fa-calendar" # displayed in metadata on index and below title on page.
-#icon_info = "svgs fa-solid fa-circle-info" # displayed in metadata on index and below title on page for categories/tags
-#icon_author = "svgs fa-solid fa-pen-fancy" # displayed in metadata on index and below title on page.
+# icon_read = "svgs fa-solid fa-glasses" # displayed in metadata on index and below title on page.
+# icon_date = "svgs fa-solid fa-calendar" # displayed in metadata on index and below title on page.
+# icon_info = "svgs fa-solid fa-circle-info" # displayed in metadata on index and below title on page for categories/tags
+# icon_author = "svgs fa-solid fa-pen-fancy" # displayed in metadata on index and below title on page.
 
 # For externally loaded Fonts, make sure to include the FULL url including the http/https prefix
 fonts = [ {url = "https://cdn.jsdelivr.net/npm/victormono@latest/dist/index.min.css"} ]
