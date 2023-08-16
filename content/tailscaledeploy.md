@@ -3,6 +3,7 @@ title = "GitOps Homelab Deploys with NixOS and Tailscale"
 date = 2023-08-15
 draft = true
 
+[taxonomies]
 tags = ["nixos","homelab","practices"]
 [extra]
 keywords = "Math, Matematics, Notation, KaTeX, Mathematical Notation"
@@ -19,19 +20,19 @@ This means that with something like:
 ```nix
 # flake.nix
 {
-  inputs.deploy-rs.url = “github:serokell/deploy-rs”;
+  inputs.deploy-rs.url = "github:serokell/deploy-rs";
 
   outputs = { self, nixpkgs, deploy-rs }: {
     # define my homelab configuration
     nixosConfigurations.agamemnon = nixpkgs.lib.nixosSystem {
-      system = “x86_64-linux”;
+      system = "x86_64-linux";
       services.paperless-ngx.enable = true;
     };
 
     # define deployment parameters
     deploy.nodes.agamemnon.profiles.system = {
-        hostname = “192.168.0.3”;
-        user = “root”;
+        hostname = "192.168.0.3";
+        user = "root";
         path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.some-random-system;
     };
   };
