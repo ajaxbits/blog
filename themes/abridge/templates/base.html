@@ -91,12 +91,6 @@
     <div class="c">
       {{- social_macros::social_links(social_config=config.extra.social, config=config) }}
 
-      {#- Copyright START #}
-      {%- set copyright_start_year=config.extra.copyright_start_year | default(value="") %}
-      {%- if copyright_start_year %}{%- set copyright_start_year=copyright_start_year ~ "-" %}{%- endif %}
-      {%- set copyright_end_year=config.extra.copyright_end_year | default(value=now() | date(format="%Y")) %}
-      <p{%- if config.extra.footer_size %} class="{{ config.extra.footer_size }}"{% endif %}>Copyright &copy; {{ copyright_start_year ~ copyright_end_year }} {{ config.title }}</p>
-      {#- Copyright END #}
       <nav>
         <ul>
           {%- for i in config.extra.menu_footer -%}
