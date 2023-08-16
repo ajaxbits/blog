@@ -5,8 +5,6 @@ draft = true
 
 [taxonomies]
 tags = ["nixos","homelab","practices"]
-[extra]
-keywords = "Math, Matematics, Notation, KaTeX, Mathematical Notation"
 +++
 
 > Or: Bringing the buzzword salad home to roost
