@@ -24,12 +24,12 @@
         lib = pkgs.lib;
         stagingUrl = "http://127.0.0.1:8080";
 
-        blogBuilder = {staging ? false}:
+        blogBuilder = {rootUrl ? false, drafts ? false}:
           pkgs.stdenv.mkDerivation {
             pname = "ajaxbits";
             version =
-              if staging
-              then "staging"
+              if (builtins.isString rootUrl)
+              then "test"
               else "0.0.0";
             src = ./.;
             nativeBuildInputs = [
@@ -43,12 +43,14 @@
               export HOME=$(pwd)
 
               zola build \
-                ${(lib.optionalString staging "--drafts --base-url=${stagingUrl}")}
+                ${(lib.optionalString (builtins.isString rootUrl) "--base-url=${rootUrl}")} \
+                ${(lib.optionalString drafts "--drafts")} 
 
               npm run abridge
 
               zola build \
-                ${(lib.optionalString staging "--drafts --base-url=${stagingUrl}")}
+                ${(lib.optionalString (builtins.isString rootUrl) "--base-url=${rootUrl}")} \
+                ${(lib.optionalString drafts "--drafts")} 
             '';
             installPhase = "cp -r public $out";
 
@@ -72,25 +74,35 @@
           };
       in {
         packages.default = config.packages.prod;
-        apps.default = config.apps.prod;
+        apps.default = config.apps.prod-preview;
 
         packages.prod = blogBuilder {};
 
-        packages.staging = blogBuilder {staging = true;};
+        packages.prod-preview = blogBuilder {rootUrl = stagingUrl;};
 
-        apps.staging = {
-          type = "app";
-          program = pkgs.writeShellScriptBin "server" ''
-            ${pkgs.python3Minimal}/bin/python3 -m http.server 8080 \
-              --directory ${config.packages.staging}
-          '';
-        };
+        packages.staging = blogBuilder {rootUrl = stagingUrl; drafts = true;};
 
         apps.prod = {
           type = "app";
           program = pkgs.writeShellScriptBin "server" ''
             ${pkgs.python3Minimal}/bin/python3 -m http.server 8080 \
               --directory ${config.packages.prod}
+          '';
+        };
+
+        apps.prod-preview = {
+          type = "app";
+          program = pkgs.writeShellScriptBin "server" ''
+            ${pkgs.python3Minimal}/bin/python3 -m http.server 8080 \
+              --directory ${config.packages.prod-preview}
+          '';
+        };
+
+        apps.staging = {
+          type = "app";
+          program = pkgs.writeShellScriptBin "server" ''
+            ${pkgs.python3Minimal}/bin/python3 -m http.server 8080 \
+              --directory ${config.packages.staging}
           '';
         };
 
