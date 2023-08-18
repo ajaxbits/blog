@@ -29,6 +29,13 @@ draft = true
         (else (append (list (deepmap proc (car x)))
                       (deepmap proc (cdr x))))))
 
+; This is a better version that I found in the book later
+(define (deepmap proc lst)
+  (cond ((null? lst) nil)
+        ((not (pair? lst)) (proc lst))
+        (else (cons (deepmap proc (car lst))
+                    (deepmap proc (cdr lst))))))
+
 ; Corollary that falls out of the above
 (define (flatmap proc x)
   (map proc (flatten x)))
